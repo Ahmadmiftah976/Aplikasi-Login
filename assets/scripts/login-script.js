@@ -1,64 +1,66 @@
-/**
- * @fileoverview Logika autentikasi sederhana untuk menangani form login.
- * Memvalidasi kredensial pengguna terhadap nilai yang telah ditentukan.
- */
-
-/**
-
- * Elemen form login dari DOM.
- * @type {HTMLFormElement}
- */
+/** @module Login-Script */
+/** 
+* Membuat variabel loginFormElement untuk tampilan form.
+* @constant {HTMLElement}
+*/
 const loginFormElement = document.querySelector('#loginForm');
-
-/**
- * Elemen input email dari DOM.
- * @type {HTMLInputElement}
- */
+ 
+ 
+/** 
+* Membuat variabel inputEmailElement untuk tampilan input email.
+* @constant {HTMLElement}
+*/
 const inputEmailElement = document.querySelector('#inputEmail');
-
-/**
- * Elemen input password dari DOM.
- * @type {HTMLInputElement}
- */
+ 
+ 
+/** 
+* Membuat variabel inputPasswordElement untuk tampilan input password.
+* @constant {HTMLElement}
+*/
 const inputPasswordElement = document.querySelector('#inputPassword');
-
-/**
- * Alamat email yang valid untuk proses login.
- * @constant {string}
- */
+ 
+ 
+/** 
+ * Membuat variabel expectedEmail untuk menyimpan informasi email sementara.
+ * @constant {string}
+ */
 const expectedEmail = 'admin@dicoding.com';
-
-/**
- * Kata sandi yang valid untuk proses login.
- * @constant {string}
- */
+ 
+ 
+/** 
+ * Membuat variabel expectedPassword untuk menyimpan informasi password sementara.
+ * @constant {string}
+ */
 const expectedPassword = 'superpassword';
-
-/**
- * Menangani event submission pada form login.
- * Mengambil nilai input, memvalidasi dengan data yang diharapkan,
- * dan mengarahkan pengguna ke halaman yang sesuai.
- * * @param {SubmitEvent} event - Objek event yang dikirimkan saat form disubmit.
- * @returns {void}
- */
+ 
+ 
+/* Comment :  Menambahkan aksi klik pada button. */
 loginFormElement.addEventListener('submit', function(event) {
-  // Mencegah reload halaman secara default saat submit form
-  event.preventDefault();
-
-  /** @type {string} Nilai email yang diinput oleh pengguna */
-  const email = inputEmailElement.value;
-  
-  /** @type {string} Nilai password yang diinput oleh pengguna */
-  const password = inputPasswordElement.value;
-
-  /**
-   * Logika Percabangan Autentikasi:
-   * Jika email DAN password cocok dengan data yang diharapkan, masuk ke Home.
-   * Jika salah satu atau keduanya salah, tampilkan Pop Up Error.
-   */
+  event.preventDefault();
+  
+  /** 
+   * Membuat variabel email untuk menyimpan nilai email yang didapatkan saat button ditekan.
+   * @constant {string}
+   */
+  const email = inputEmailElement.value;
+  
+  /** 
+   * Membuat variabel password untuk menyimpan niali password yang didapatkan saat button ditekan.
+   * @constant {string}
+   */
+  const password = inputPasswordElement.value;
+ 
+ 
+  /* Comment : Memastikan bahwa nilai email dan password sesuai dengan nilai yang tersimpan. */
   if (email == expectedEmail && password == expectedPassword) {
+ 
+    /* Comment : Jika sesuai maka program akan berpindah ke halaman home. */
     goToHome();
+ 
   } else {
+ 
+    /* Comment : Namun jika tidak sesuai maka akan menampilkan informasi bahwa input salah. */
     showPopUp();
+ 
   }
 });
